@@ -1,22 +1,28 @@
 <template>
   <Header />
   <div>
-    <router-view/>
+    <router-view />
   </div>
   <Footer />
 </template>
 
 <script>
-import Header from "./components/headerComp.vue"
-import Footer from "./components/footerComp.vue"
+import Header from "./components/headerComp.vue";
+import Footer from "./components/footerComp.vue";
+import { store } from "./components/store.js";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Footer,
-  }
-}
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+};
 </script>
 
 <style>
