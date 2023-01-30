@@ -12,10 +12,6 @@
                     </text-input>
 
                     <hr />
-
-                    Email: {{ email }}
-
-                    <hr />
                     <input type="submit" class="btn btn-primary" value="Login" />
                 </form-tag>
             </div>
@@ -27,6 +23,8 @@
 import FormTag from "./forms/FormTag.vue";
 import TextInput from "./forms/TextInput.vue";
 import { store } from "./store.js";
+import router from "./../router/index.js";
+import notie from "notie";
 
 export default {
     name: "loginComp",
@@ -60,9 +58,16 @@ export default {
                 .then((response) => {
                     if (response.error) {
                         console.log("Error:", response.message);
+                        notie.alert({
+                            type: 'error',
+                            text: response.message,
+                            // stay: true,
+                            // position: 'bottom',
+                        })
                     } else {
                         console.log("Token:", response.data.token.token);
                         store.token = response.data.token.token;
+                        router.push("/")
                     }
                 });
         },
