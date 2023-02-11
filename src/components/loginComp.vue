@@ -25,6 +25,7 @@ import TextInput from "./forms/TextInput.vue";
 import { store } from "./store.js";
 import router from "./../router/index.js";
 import notie from "notie";
+import Security from './security.js';
 
 export default {
     name: "loginComp",
@@ -40,20 +41,18 @@ export default {
         };
     },
     methods: {
-        submitHandler() {
-            console.log("submitHandler called - success!");
-
+        submitHandler() {            
             const payload = {
                 email: this.email,
                 password: this.password,
             };
 
-            const requestOptions = {
-                method: "POST",
-                body: JSON.stringify(payload),
-            };
+            // const requestOptions = {
+            //     method: "POST",
+            //     body: JSON.stringify(payload),
+            // };
 
-            fetch("http://localhost:8081/users/login", requestOptions)
+            fetch(process.env.VUE_APP_API_URL + "/users/login", Security.requestOptions(payload))
                 .then((response) => response.json())
                 .then((response) => {
                     if (response.error) {

@@ -10,6 +10,7 @@
 import Header from "./components/headerComp.vue";
 import Footer from "./components/footerComp.vue";
 import { store } from "./components/store.js";
+import Security from './components/security.js';
 
 const getCookie = (name) => {
   return document.cookie.split("; ").reduce((r, v) => {
@@ -45,6 +46,27 @@ export default {
         email: cookieData.user.email,
       }
     }
+  },
+  mounted() {
+    const payload = {
+      foo: "bar",
+    }
+
+    // const headers = new Headers();
+    // headers.append("Content-Type", "application/json");
+    // headers.append("Authorization", "Bearer " + store.token);
+
+    // const requestOptions = {
+    //   method: "POST",
+    //   body: JSON.stringify(payload),
+    //   // headers: headers,
+    // }
+
+    fetch(process.env.VUE_APP_API_URL + "/admin/foo", Security.requestOptions(payload))
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
   }
 };
 </script>
