@@ -7,6 +7,7 @@ import bookAdminComp from '../components/booksAdminComp.vue'
 import bookEditComp from '../components/bookEditComp.vue'
 import usersComp from '../components/usersComp.vue'
 import userEditComp from '../components/userEditComp.vue'
+import Security from '@/components/security'
 
 const routes = [
     {
@@ -52,4 +53,7 @@ const routes = [
 ]
 
 const router = createRouter({ history: createWebHistory(), routes })
+router.beforeEach(() => {
+    Security.checkToken();
+})
 export default router

@@ -1,7 +1,7 @@
 <template>
   <Header />
   <div>
-    <router-view />
+    <router-view :key="componentKey" @success="success" @error="error" @warning="warning" @forceUpdate="forceUpdate" />
   </div>
   <Footer />
 </template>
@@ -10,7 +10,8 @@
 import Header from "./components/headerComp.vue";
 import Footer from "./components/footerComp.vue";
 import { store } from "./components/store.js";
-import Security from './components/security.js';
+import notie from "notie";
+// import Security from './components/security.js';
 
 const getCookie = (name) => {
   return document.cookie.split("; ").reduce((r, v) => {
@@ -28,6 +29,7 @@ export default {
   data() {
     return {
       store,
+      componentKey: 0,
     };
   },
   beforeMount() {
@@ -47,26 +49,49 @@ export default {
       }
     }
   },
-  mounted() {
-    const payload = {
-      foo: "bar",
-    }
+  // mounted() {
+  // const payload = {
+  //   foo: "bar",
+  // }
 
-    // const headers = new Headers();
-    // headers.append("Content-Type", "application/json");
-    // headers.append("Authorization", "Bearer " + store.token);
+  // const headers = new Headers();
+  // headers.append("Content-Type", "application/json");
+  // headers.append("Authorization", "Bearer " + store.token);
 
-    // const requestOptions = {
-    //   method: "POST",
-    //   body: JSON.stringify(payload),
-    //   // headers: headers,
-    // }
+  // const requestOptions = {
+  //   method: "POST",
+  //   body: JSON.stringify(payload),
+  //   // headers: headers,
+  // }
 
-    fetch(process.env.VUE_APP_API_URL + "/admin/foo", Security.requestOptions(payload))
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+  // fetch(process.env.VUE_APP_API_URL + "/admin/foo", Security.requestOptions(payload))
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  // },
+  methods: {
+    success(msg) {
+      notie.alert({
+        type: 'success',
+        text: msg,
       })
+    },
+    error(msg) {
+      notie.alert({
+        type: 'error',
+        text: msg,
+      })
+    },
+    warning(msg) {
+      notie.alert({
+        type: 'warning',
+        text: msg,
+      })
+    },
+    forceUpdate() {
+      this.componentKey += 1;
+    },
   }
 };
 </script>
