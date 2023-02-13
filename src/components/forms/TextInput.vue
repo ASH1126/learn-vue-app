@@ -19,7 +19,7 @@ export default {
         required: String,
         min: String,
         max: String,
-        modelValue: String,
+        modelValue: [Number, String],
         help: String,
     },
 };
