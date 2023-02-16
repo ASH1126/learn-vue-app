@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import bodyComp from './../components/bodyComp.vue'
-import Login from './../components/loginComp.vue'
+// import Login from './../components/loginComp.vue'
+import LoginCompositionVue from '@/components/LoginComposition.vue'
 // import booksComp from '../components/booksComp.vue'
 import BooksCompositionVue from '@/components/BooksComposition.vue'
 // import bookComp from '../components/bookComp.vue'
@@ -20,7 +21,7 @@ const routes = [
     {
         path: '/login',
         name: 'Login',
-        component: Login,
+        component: LoginCompositionVue,
     },
     {
         path: '/books',
