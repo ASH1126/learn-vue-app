@@ -3,7 +3,8 @@ import bodyComp from './../components/bodyComp.vue'
 import Login from './../components/loginComp.vue'
 // import booksComp from '../components/booksComp.vue'
 import BooksCompositionVue from '@/components/BooksComposition.vue'
-import bookComp from '../components/bookComp.vue'
+// import bookComp from '../components/bookComp.vue'
+import BookCompositionVue from '@/components/BookComposition.vue'
 import bookAdminComp from '../components/booksAdminComp.vue'
 import bookEditComp from '../components/bookEditComp.vue'
 import usersComp from '../components/usersComp.vue'
@@ -29,7 +30,7 @@ const routes = [
     {
         path: '/books/:bookName',
         name: 'Book',
-        component: bookComp,
+        component: BookCompositionVue,
     },
     {
         path: '/admin/books',
