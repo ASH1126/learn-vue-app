@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import bodyComp from './../components/bodyComp.vue'
 import Login from './../components/loginComp.vue'
-import booksComp from '../components/booksComp.vue'
+// import booksComp from '../components/booksComp.vue'
+import BooksCompositionVue from '@/components/BooksComposition.vue'
 import bookComp from '../components/bookComp.vue'
 import bookAdminComp from '../components/booksAdminComp.vue'
 import bookEditComp from '../components/bookEditComp.vue'
@@ -23,7 +24,7 @@ const routes = [
     {
         path: '/books',
         name: 'Books',
-        component: booksComp,
+        component: BooksCompositionVue,
     },
     {
         path: '/books/:bookName',
